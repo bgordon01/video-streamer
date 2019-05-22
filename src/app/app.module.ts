@@ -9,6 +9,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { SeriesComponent } from './series/series.component';
 import { LoadingDirective } from './loading.directive';
 import { ErrorDirective } from './error.directive';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ErrorDirective } from './error.directive';
     MoviesComponent,
     SeriesComponent,
     LoadingDirective,
-    ErrorDirective
+    ErrorDirective,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
