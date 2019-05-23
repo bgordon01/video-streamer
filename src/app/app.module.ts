@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { MoviesComponent } from './movies/movies.component';
-import { SeriesComponent } from './series/series.component';
-import { LoadingDirective } from './loading.directive';
-import { ErrorDirective } from './error.directive';
-import { ContentComponent } from './content/content.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MoviesComponent } from './components/movies/movies.component';
+import { SeriesComponent } from './components/series/series.component';
+import { ContentComponent } from './components/content/content.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +18,9 @@ import { ContentComponent } from './content/content.component';
     HeaderComponent,
     MoviesComponent,
     SeriesComponent,
-    LoadingDirective,
-    ErrorDirective,
-    ContentComponent
+    ContentComponent,
+    LoaderComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
