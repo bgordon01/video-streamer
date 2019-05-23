@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-series',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeriesComponent implements OnInit {
 
-  constructor() { }
+	pageTitle: string;
+	
+	constructor(private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+		this.activatedRoute.data.subscribe(values => {
+			this.pageTitle = values['title'];
+		});
+	}
 
 }
