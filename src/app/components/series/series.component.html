@@ -1,9 +1,16 @@
 <div class="content">
-		<div class="header">
-			{{pageTitle}}
-		</div>
-		<div class="main">
-	
-		</div>
+	<div class="header">
+		{{pageTitle}}
 	</div>
+	<div class="main">
+		<div *ngFor="let item of series">
+			<div class="category-tile">
+				<a routerLink="/#" routerLinkActive="active">
+					<img src={{getThumbnail(item)}} width="140" height="200"/>
+					<div class="sub-title">{{item.title}}</div>			
+				</a>	
+			</div>
+		</div>	
+	</div>
+</div>
 	
