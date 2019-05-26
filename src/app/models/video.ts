@@ -14,9 +14,19 @@ export class Video {
 	releaseYear: number;
 }
 
+export class SearchFilter {
+	field: string;
+	operator: string;
+	value: string;
+}
+
+export class SearchSort {
+	field: string;
+	order: string;
+}
+
 export class SearchOptions {
-	filter: {
-		field: string;
-		value: string;
-	}
+	filters: SearchFilter[];
+	sort?: SearchSort[];
+	limitTo?: number;
 }
