@@ -1,7 +1,7 @@
 import { map } from 'rxjs/internal/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { VideoService } from "../../services/video.service";
 
 @Component({
 	selector: 'app-content',
@@ -11,13 +11,18 @@ import { Observable } from 'rxjs';
 export class ContentComponent implements OnInit {
 
 	pageTitle: string;
+	programTypes: {}[];
 	
-	constructor(private activatedRoute: ActivatedRoute) {}
+	constructor(private activatedRoute: ActivatedRoute,
+		private videoService: VideoService) {}
 
 	ngOnInit() {
+		//
 		this.activatedRoute.data.subscribe(values => {
 			this.pageTitle = values['title'];
 		});
+		//
+		this.programTypes = this.videoService.getUniqueProgramTypes();
 	}
 
 }
