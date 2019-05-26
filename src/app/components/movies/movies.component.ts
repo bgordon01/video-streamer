@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { VideoService } from '../../services/video.service';
+import { SearchOptions, Video } from '../../models/video';
 
 @Component({
   selector: 'app-movies',
@@ -9,13 +11,41 @@ import { ActivatedRoute } from '@angular/router';
 export class MoviesComponent implements OnInit {
 
 	pageTitle: string;
+	movies: Video[];
 	
-	constructor(private activatedRoute: ActivatedRoute) {}
+	constructor(
+		private activatedRoute: ActivatedRoute,
+		private videosService: VideoService
+	) {}
 
 	ngOnInit() {
 		this.activatedRoute.data.subscribe(values => {
 			this.pageTitle = values['title'];
 		});
+		this.getMovies();
+	}
+
+	getMovies(): void {
+		this.movies = this.videosService.search({
+			filters: [{
+				field: 'programType',
+				operator: 'equalTo',
+				value: 'movie'
+			},{
+				field: 'releaseYear',
+				operator: 'greaterEqualTo',
+				value: '2010'
+			}],
+			sort: [{
+				field: 'title',
+				order: 'asc'
+			}],
+			limitTo: 21
+		} as SearchOptions);
+	}
+
+	getThumbnail(movie: Video) {
+		return movie.images['Poster Art'].url;
 	}
 
 }

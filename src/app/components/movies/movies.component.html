@@ -3,6 +3,13 @@
 		{{pageTitle}}
 	</div>
 	<div class="main">
-
+		<div *ngFor="let movie of movies">
+			<div class="category-tile">
+				<a routerLink="/#" routerLinkActive="active">
+					<img src={{getThumbnail(movie)}} width="140" height="200"/>
+					<div class="sub-title">{{movie.title}}</div>			
+				</a>	
+			</div>
+		</div>	
 	</div>
 </div>
