@@ -10,6 +10,7 @@ import { SeriesComponent } from './components/series/series.component';
 import { ContentComponent } from './components/content/content.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ErrorComponent } from './components/error/error.component';
+import { VideoComponent } from './components/video/video.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ErrorComponent } from './components/error/error.component';
     SeriesComponent,
     ContentComponent,
     LoaderComponent,
-    ErrorComponent
+    ErrorComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
