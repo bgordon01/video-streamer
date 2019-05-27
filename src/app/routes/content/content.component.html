@@ -4,7 +4,7 @@
 	</div>
 	<div class="main">
 		<div *ngFor="let type of programTypes">
-			<app-video type={{type}}></app-video>
+			<app-video type={{type}} url="" title={{getTitle(type)}}></app-video>
 		</div>		
 	</div>
 </div>

@@ -4,10 +4,7 @@
 	</div>
 	<div class="main">
 		<div *ngFor="let movie of movies">
-			<div class="category-tile" routerLink="/#" routerLinkActive="active">
-				<img src={{getThumbnail(movie)}} width="140" height="200"/>
-				{{movie.title}}		
-			</div>
+			<app-video url={{getThumbnail(movie)}} title={{movie.title}}></app-video>
 		</div>	
 	</div>
 </div>

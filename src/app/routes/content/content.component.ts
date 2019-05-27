@@ -25,4 +25,31 @@ export class ContentComponent implements OnInit {
 		this.programTypes = this.videoService.getUniqueProgramTypes();
 	}
 
+	toTitleCase(str: string): string {
+		return str.replace(
+			/\w\S*/g,
+			function (txt) {
+				return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+			}
+		);
+	}
+
+	titleToUpperCase(type: string) {
+		return this.getRouteByType(type).toUpperCase();
+	}
+
+	getRouteByType(type: string) {
+		//
+		switch (type) {
+			case 'movie':
+				return 'movies';
+			default:
+				return type;
+		}
+	}
+
+	getTitle(type: string): string {
+		return this.toTitleCase(`popular ${this.getRouteByType(type)}`)
+	}
+
 }
