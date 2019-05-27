@@ -4,11 +4,9 @@
 	</div>
 	<div class="main">
 		<div *ngFor="let item of series">
-			<div class="category-tile">
-				<a routerLink="/#" routerLinkActive="active">
-					<img src={{getThumbnail(item)}} width="140" height="200"/>
-					<div class="sub-title">{{item.title}}</div>			
-				</a>	
+			<div class="category-tile" routerLink="/#" routerLinkActive="active">
+				<img src={{getThumbnail(item)}} width="140" height="200"/>
+				{{item.title}}	
 			</div>
 		</div>	
 	</div>

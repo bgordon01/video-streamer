@@ -15,40 +15,30 @@
 .main {
 	display: flex;
 	flex-wrap: wrap;
-	padding: 20px 10%;
+	padding: 20px 5% 20% 10%
 }
 
 .category-tile {
 	color: #ffffff;
-	margin-right: 15px;
-	word-wrap: break-word;
+    font-size: 12px;
+    word-wrap: break-word;
+    padding: 3px;
+    background-color: #1e1e1e;
+    width: 140px;
+    height: 232px;
+    line-height: 180px;
+    /* text-align: unset; */
+    background-image: url('../../../assets/placeholder.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    line-height: initial;
+    margin: 5px;
+    text-align: center;
+    vertical-align: middle;
 }
 
-.category-tile a{
-	text-decoration: none;
-}
-
-.category-tile .body .title{
+.category-tile a {
 	color: #ffffff;
-	font-size: 24px;
-	font-weight: bold;
-	width: 60px;
-}
-
-.category-tile .body {
-	padding: 10px;
-	background-color: #1e1e1e;
-	width: 120px;
-	height: 180px;
-	line-height: 180px;
- 	text-align: center;
-	background-image: url('../../../assets/placeholder.png');
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-.category-tile .sub-title {
-	padding-top: 10px;
-	color: #1e1e1e;
-	font-size: 12px;
+	text-decoration: none;
+	height: 230px;
 }
