@@ -4,7 +4,7 @@
 	</div>
 	<div class="main">
 		<div *ngFor="let item of series">
-			<app-video url={{getThumbnail(item)}} title={{item.title}}></app-video>
+			<app-video type="detail" url={{getThumbnail(item)}} title={{item.title}}></app-video>
 		</div>	
 	</div>
 </div>

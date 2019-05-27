@@ -25,6 +25,8 @@ export class VideoComponent implements OnInit {
 		switch (type) {
 			case 'movie':
 				return 'movies';
+			case 'detail':
+				return '';
 			default:
 				return type;
 		}
