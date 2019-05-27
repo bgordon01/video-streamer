@@ -193,18 +193,21 @@ export class VideoService {
 	private handleError<T>(operation = 'operation', result?: T) {
 		return (error: any): Observable<T> => {
 
-			// TODO: send the error to remote logging infrastructure
-			console.error(error); // log to console instead
+			console.error(error); 
 
-			// TODO: better job of transforming error for user consumption
 			this.log(`${operation} failed: ${error.message}`);
 
-			// Let the app keep running by returning an empty result.
 			return of(result as T);
 		};
 	}
-
-	/** Log a HeroService message with the MessageService */
+	
+	/**
+	 * Log a VideoService message 
+	 *
+	 * @private
+	 * @param {string} message
+	 * @memberof VideoService
+	 */
 	private log(message: string) {
 		console.log(`VideoService: ${message}`);
 	}
