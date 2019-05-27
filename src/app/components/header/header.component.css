@@ -3,7 +3,8 @@
 	background-color: #0075ff;
 	transition: background-color 1s linear;
 	display: flex;
-	box-shadow: 0px 3px 5px 0px rgba(120,120,120,1);
+	box-shadow: 0px 0px 5px 0px #efefef;
+    position: sticky;
 }
 
 .title {
