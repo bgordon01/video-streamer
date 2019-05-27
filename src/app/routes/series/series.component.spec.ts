@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SeriesComponent } from './series.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 describe('SeriesComponent', () => {
   let component: SeriesComponent;
@@ -8,7 +10,13 @@ describe('SeriesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SeriesComponent ]
+      declarations: [ SeriesComponent ],
+	  schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
+	  providers: [
+		  ActivatedRoute
+	  ]
     })
     .compileComponents();
   }));
