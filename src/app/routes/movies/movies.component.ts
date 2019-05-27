@@ -26,7 +26,7 @@ export class MoviesComponent implements OnInit {
 	}
 
 	getMovies(): void {
-		this.movies = this.videosService.search({
+		this.videosService.search({
 			filters: [{
 				field: 'programType',
 				operator: '=',
@@ -41,7 +41,7 @@ export class MoviesComponent implements OnInit {
 				order: 'asc'
 			}],
 			limitTo: 21
-		} as SearchOptions);
+		} as SearchOptions).subscribe(movies => this.movies = movies);
 	}
 
 	getThumbnail(movie: Video) {

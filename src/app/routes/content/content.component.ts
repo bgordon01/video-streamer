@@ -2,6 +2,7 @@ import { map } from 'rxjs/internal/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VideoService } from "../../services/video.service";
+import { Video } from 'src/app/models/video';
 
 @Component({
 	selector: 'app-content',
@@ -11,7 +12,7 @@ import { VideoService } from "../../services/video.service";
 export class ContentComponent implements OnInit {
 
 	pageTitle: string;
-	programTypes: {}[];
+	videos: string | boolean | Video[];
 	
 	constructor(private activatedRoute: ActivatedRoute,
 		private videoService: VideoService) {}
@@ -22,7 +23,9 @@ export class ContentComponent implements OnInit {
 			this.pageTitle = values['title'];
 		});
 		//
-		this.programTypes = this.videoService.getUniqueProgramTypes();
+		this.videoService.getUniqueProgramTypes().subscribe(videos => 
+			this.videos = videos
+		);
 	}
 
 	toTitleCase(str: string): string {

@@ -3,8 +3,8 @@
 		{{pageTitle}}
 	</div>
 	<div class="main">
-		<div *ngFor="let type of programTypes">
-			<app-video type={{type}} url="" title={{getTitle(type)}}></app-video>
+		<div *ngFor="let video of videos">
+			<app-video type={{video.programType}} url="" title={{getTitle(video.programType)}}></app-video>
 		</div>		
 	</div>
 </div>

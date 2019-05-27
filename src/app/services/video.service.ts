@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Video, SearchOptions, SearchFilter, SearchSort } from '../models/video';
 
-var data = require('../data/sample.json');
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class VideoService {
 
-	constructor() { }
+	private baseURL = 'api/videos';  // URL to web api
+
+	constructor(
+		private http: HttpClient
+	) { }
 
 	/**
 	 *
@@ -16,8 +22,12 @@ export class VideoService {
 	 * @returns {Video[]}
 	 * @memberof VideoService
 	 */
-	getAllVideos(): Video[] {
-		return data.entries; 
+	getAllVideos(): Observable<Video[]> {
+		return this.http.get<Video[]>(this.baseURL)
+		.pipe(
+			tap(_ => this.log('fetched videos')),
+		  	catchError(this.handleError<Video[]>('getVideos', []))
+		); 
 	}
 	
 	/**
@@ -26,11 +36,17 @@ export class VideoService {
 	 * @returns {Video[]}
 	 * @memberof VideoService
 	 */
-	getUniqueProgramTypes(): Video[]  {
-		return [...new Set(data.entries.map((video: Video) => {
-				return video.programType
-			})
-		)] as Video[];
+	getUniqueProgramTypes(): Observable<string | boolean | Video[]>  {
+		return this.http.get<Video[]>(this.baseURL)
+			.pipe(
+				// Filter the data
+				map((data) => {
+					return data.filter((obj, pos, arr) => {
+						return arr.map(mapObj => mapObj['programType']).indexOf(obj['programType']) === pos;
+					});
+				}),
+				catchError(this.handleError<Video[]>('getVideos', []))
+		);
 	}	
 
 	/**
@@ -146,33 +162,51 @@ export class VideoService {
 	 * @returns {Video[]}
 	 * @memberof VideoService
 	 */
-	search(options: SearchOptions): Video[] {
-		let videos: Video[] = this.getAllVideos();
-		let filteredList: Video[] = [];
-		// Filter by fields
-		if (options.filters) {
-			filteredList = this.filterList(options.filters, videos);
-		}
-		// Sort by fields
-		let sortedList: Video[] = []; 
-		if (options.sort) {
-			// Add sorting logic here
-			sortedList = filteredList.sort((a: Video, b: Video) => {				
-				return this.sortList(options.sort, a, b);
-			});
-		} else {
-			return filteredList;
-		}
-		// Limit result set to 21 videos
-		let limitedList: Video[] = []; 
-		if (sortedList.sort) {
-			limitedList = sortedList
-		}
-		if (options.limitTo) {
-			return filteredList.slice(0, options.limitTo);
-		} else {
-			return filteredList;
-		}
+	search(options: SearchOptions): Observable<Video[]> {
+		return this.http.get<Video[]>(this.baseURL)
+			.pipe(
+				tap(_ => this.log('fetched videos')),
+				// Filter the data
+				map(data => 
+					(options.filters) ? this.filterList(options.filters, data) : data
+				),
+				// Sort the data
+				map(data => 
+					(options.sort) ? data.sort((a: Video, b: Video) => { 
+						return this.sortList(options.sort, a, b) 
+					}) : data
+				),
+				// Limit the data
+				map(data => 
+					(options.limitTo) ? data.slice(0, options.limitTo) : data
+				),
+				catchError(this.handleError<Video[]>('getVideos', []))
+		); 
 	}	
+
+	/**
+	 * Handle Http operation that failed.
+	 * Let the app continue.
+	 * @param operation - name of the operation that failed
+	 * @param result - optional value to return as the observable result
+	 */
+	private handleError<T>(operation = 'operation', result?: T) {
+		return (error: any): Observable<T> => {
+
+			// TODO: send the error to remote logging infrastructure
+			console.error(error); // log to console instead
+
+			// TODO: better job of transforming error for user consumption
+			this.log(`${operation} failed: ${error.message}`);
+
+			// Let the app keep running by returning an empty result.
+			return of(result as T);
+		};
+	}
+
+	/** Log a HeroService message with the MessageService */
+	private log(message: string) {
+		console.log(`VideoService: ${message}`);
+	}
 
 }

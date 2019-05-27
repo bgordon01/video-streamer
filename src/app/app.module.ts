@@ -14,6 +14,7 @@ import { VideoComponent } from './components/video/video.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data-service';
+import { HttpClientModule }    from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { InMemoryDataService } from './in-memory-data-service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+	HttpClientModule,
 	
 	// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
