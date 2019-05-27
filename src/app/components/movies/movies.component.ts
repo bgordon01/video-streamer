@@ -29,11 +29,11 @@ export class MoviesComponent implements OnInit {
 		this.movies = this.videosService.search({
 			filters: [{
 				field: 'programType',
-				operator: 'equalTo',
+				operator: '=',
 				value: 'movie'
 			},{
 				field: 'releaseYear',
-				operator: 'greaterEqualTo',
+				operator: '>=',
 				value: '2010'
 			}],
 			sort: [{
