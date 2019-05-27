@@ -12,6 +12,9 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ErrorComponent } from './components/error/error.component';
 import { VideoComponent } from './components/video/video.component';
 
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,11 +25,18 @@ import { VideoComponent } from './components/video/video.component';
     ContentComponent,
     LoaderComponent,
     ErrorComponent,
-    VideoComponent
+	VideoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+	
+	// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+		InMemoryDataService, { dataEncapsulation: false }
+	)
   ],
   providers: [],
   bootstrap: [AppComponent]
