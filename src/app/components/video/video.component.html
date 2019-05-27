@@ -1,8 +1,8 @@
-<div class="category-tile">
-	<a routerLink="/{{getRouteByType(type)}}" routerLinkActive="active">
-		<div class="body">
-			<span class="title">{{titleToUpperCase(type)}}</span>
-		</div>
-		<div class="sub-title">Popular {{toTitleCase(getRouteByType(type))}}</div>			
-	</a>	
+<div class="category-tile" routerLink="/{{getRouteByType(type)}}" routerLinkActive="active">
+	<img *ngIf="url !== ''" src={{url}} width="140" height="200"/>
+	<div class="body" *ngIf="url === ''">
+		<div class="title">{{titleToUpperCase(type)}}</div>
+		<div *ngIf="url === ''" class="sub-title">{{title}}</div>	
+	</div>
+	<span *ngIf="url !== ''">{{title}}</span>	
 </div>

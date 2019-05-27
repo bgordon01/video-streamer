@@ -8,19 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class VideoComponent implements OnInit {
 
 	@Input() type: string;
+	@Input() title: string;
+	@Input() url: string;
 
 	constructor() { }
 
 	ngOnInit() {
-	}
-
-	toTitleCase(str: string): string {
-		return str.replace(
-			/\w\S*/g,
-			function (txt) {
-				return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-			}
-		);
 	}
 
 	titleToUpperCase(type: string) {
