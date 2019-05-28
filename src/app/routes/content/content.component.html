@@ -1,0 +1,16 @@
+<div class="content">
+	<div class="header">
+		{{pageTitle}}
+	</div>
+	<div class="main">		
+		<div *ngIf="!error" class="list">
+			<app-loader></app-loader>
+			<div *ngFor="let video of videos">
+				<app-video type={{video.programType}} url="" title={{getTitle(video.programType)}}></app-video>
+			</div>
+		</div>	
+		<div *ngIf="error" class="list">
+			<app-error></app-error>
+		</div>			
+	</div>
+</div>
