@@ -4,10 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { ContentComponent } from './routes/content/content.component';
 import { SeriesComponent } from './routes/series/series.component';
 import { MoviesComponent } from './routes/movies/movies.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
 	{
-		path: '',
+		path: '', 
+		redirectTo: '/home', 
+		pathMatch: 'full'
+	},
+	{
+		path: 'home',
 		component: ContentComponent,
 		data: { title: 'Popular Titles' }
 	},
