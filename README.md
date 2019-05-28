@@ -8,7 +8,7 @@
 
 An AngularJS video streamer application using version 7.3.9.
 
-## Development server
+## Installation & Development
 
 1. `cd video-streamer`  
 2. `npm i`  
