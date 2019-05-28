@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class VideoService {
 
-	private baseURL = 'api/videos';  // URL to web api
+	private baseURL = 'api/videos';
 
 	constructor(
 		private http: HttpClient
@@ -184,9 +184,11 @@ export class VideoService {
 
 	/**
 	 * Handle Http operation that failed.
-	 * 
-	 * @param error
-	 * @param result
+	 *
+	 * @private
+	 * @param {*} error
+	 * @returns {Error}
+	 * @memberof VideoService
 	 */
 	private handleError (error: any): Error {
 		console.error(error);
