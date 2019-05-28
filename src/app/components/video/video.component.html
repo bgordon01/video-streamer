@@ -1,0 +1,8 @@
+<div class="category-tile" routerLink="/{{getRouteByType(type)}}" routerLinkActive="active">
+	<img *ngIf="url !== ''" src={{url}} width="140" height="200"/>
+	<div class="body" *ngIf="url === ''">
+		<div class="title">{{titleToUpperCase(type)}}</div>
+		<div *ngIf="url === ''" class="sub-title">{{title}}</div>	
+	</div>
+	<span *ngIf="url !== ''">{{title}}</span>	
+</div>

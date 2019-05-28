@@ -1,0 +1,84 @@
+.footer {
+	color: #ffffff;
+	font-size: 12px;
+	padding: 20px 10%;
+	background-color: #1e1e1e;
+	transition: background-color 1s linear;
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	min-height: 50px;
+	bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+
+.nav {	
+	flex: 1 1 1;
+}
+
+.nav a {
+	padding: 0 12px;	
+	color: #c1c3c2;
+	text-decoration: none;
+}
+
+.nav a:first-child {
+	padding-left: 0;
+}
+
+.nav a:hover {	
+	text-decoration: underline;
+}
+
+.copy {
+	margin-top: 5px;
+	color: #97989d;
+	font-size: 10px;
+	flex: 1 1 1;
+}
+
+.bottom {
+	padding: 35px 0;
+	flex: 1 1 1;
+	display: flex;
+}
+
+.bottom img {
+	padding: 0 15px;;
+}
+
+.social {
+	flex: 1 1;
+}
+
+/* .social img {
+	padding: 0 15px;;
+} */
+
+.social img.facebook {
+	padding-left: 0;
+	width: 18px;
+}
+
+.social img.twitter {
+	width: 40px;
+}
+
+.social img.instagram {
+	width: 35px;
+}
+
+.apps {
+	/* flex: 1 1; */
+	float: right;
+}
+
+.apps img {
+	height: 40px;
+}
+
+.apps img.windows {
+	padding-right: 0;
+}
