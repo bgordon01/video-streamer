@@ -2,11 +2,16 @@
 	<div class="header">
 		{{pageTitle}}
 	</div>	
-	<div class="main">		
-		<app-loader></app-loader>		
-		<div *ngFor="let item of series">			
-			<app-video type="detail" url={{getThumbnail(item)}} title={{item.title}}></app-video>
+	<div class="main">	
+		<div *ngIf="!error" class="list">
+			<app-loader></app-loader>
+			<div *ngFor="let item of series">			
+				<app-video type="detail" url={{getThumbnail(item)}} title={{item.title}}></app-video>
+			</div>
 		</div>	
+		<div *ngIf="error" class="list">
+			<app-error></app-error>
+		</div>
 	</div>
 </div>
 	

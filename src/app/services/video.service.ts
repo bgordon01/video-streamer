@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Video, SearchOptions, SearchFilter, SearchSort } from '../models/video';
 
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -22,11 +22,10 @@ export class VideoService {
 	 * @returns {Video[]}
 	 * @memberof VideoService
 	 */
-	getAllVideos(): Observable<Video[]> {
+	getAllVideos(): Observable<Video[] | Error> {
 		return this.http.get<Video[]>(this.baseURL)
 		.pipe(
-			tap(_ => this.log('fetched videos')),
-		  	catchError(this.handleError<Video[]>('getVideos', []))
+			catchError(err => of(this.handleError(err)))
 		); 
 	}
 	
@@ -36,7 +35,7 @@ export class VideoService {
 	 * @returns {Video[]}
 	 * @memberof VideoService
 	 */
-	getUniqueProgramTypes(): Observable<string | boolean | Video[]>  {
+	getUniqueProgramTypes(): Observable<Video[] | Error>  {
 		return this.http.get<Video[]>(this.baseURL)
 			.pipe(
 				// Filter the data
@@ -45,7 +44,7 @@ export class VideoService {
 						return arr.map(mapObj => mapObj['programType']).indexOf(obj['programType']) === pos;
 					});
 				}),
-				catchError(this.handleError<Video[]>('getVideos', []))
+				catchError(err => of(this.handleError(err)))
 		);
 	}	
 
@@ -162,10 +161,9 @@ export class VideoService {
 	 * @returns {Video[]}
 	 * @memberof VideoService
 	 */
-	search(options: SearchOptions): Observable<Video[]> {
+	search(options: SearchOptions): Observable<Video[] | Error> {
 		return this.http.get<Video[]>(this.baseURL)
 			.pipe(
-				tap(_ => this.log('fetched videos')),
 				// Filter the data
 				map(data => 
 					(options.filters) ? this.filterList(options.filters, data) : data
@@ -180,36 +178,19 @@ export class VideoService {
 				map(data => 
 					(options.limitTo) ? data.slice(0, options.limitTo) : data
 				),
-				catchError(this.handleError<Video[]>('getVideos', []))
+				catchError(err => of(this.handleError(err)))
 		); 
 	}	
 
 	/**
 	 * Handle Http operation that failed.
-	 * Let the app continue.
-	 * @param operation - name of the operation that failed
-	 * @param result - optional value to return as the observable result
+	 * 
+	 * @param error
+	 * @param result
 	 */
-	private handleError<T>(operation = 'operation', result?: T) {
-		return (error: any): Observable<T> => {
-
-			console.error(error); 
-
-			this.log(`${operation} failed: ${error.message}`);
-
-			return of(result as T);
-		};
-	}
-	
-	/**
-	 * Log a VideoService message 
-	 *
-	 * @private
-	 * @param {string} message
-	 * @memberof VideoService
-	 */
-	private log(message: string) {
-		console.log(`VideoService: ${message}`);
+	private handleError (error: any): Error {
+		console.error(error);
+		throw new Error(error);
 	}
 
 }

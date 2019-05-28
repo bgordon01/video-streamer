@@ -11,7 +11,8 @@ import { SearchOptions, Video } from '../../models/video';
 export class SeriesComponent implements OnInit {
 
 	pageTitle: string;
-	series: Video[];
+	series: Video[] | Error;
+	error: boolean = false;
 	
 	constructor(
 		private activatedRoute: ActivatedRoute,
@@ -41,7 +42,10 @@ export class SeriesComponent implements OnInit {
 				order: 'asc'
 			}],
 			limitTo: 21
-		} as SearchOptions).subscribe(series => this.series = series);;
+		} as SearchOptions).subscribe(
+			series => this.series = series, 
+			err => this.error = true
+		);
 	}
 
 	getThumbnail(movie: Video) {

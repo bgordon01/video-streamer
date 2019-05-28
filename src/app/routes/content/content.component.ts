@@ -12,7 +12,8 @@ import { Video } from 'src/app/models/video';
 export class ContentComponent implements OnInit {
 
 	pageTitle: string;
-	videos: string | boolean | Video[];
+	videos: Video[] | Error;
+	error: boolean = false;
 	
 	constructor(private activatedRoute: ActivatedRoute,
 		private videoService: VideoService) {}
@@ -23,8 +24,9 @@ export class ContentComponent implements OnInit {
 			this.pageTitle = values['title'];
 		});
 		//
-		this.videoService.getUniqueProgramTypes().subscribe(videos => 
-			this.videos = videos
+		this.videoService.getUniqueProgramTypes().subscribe(
+			videos => this.videos = videos, 
+			err => { this.error = true }
 		);
 	}
 
