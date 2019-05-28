@@ -47,11 +47,13 @@ I decided the structure the project in a way that made sense to me, breaking it 
 
 - I could have implemented better unit as well as e2e testing
 - Better responsive styling for mobile and tablet devices
+- Improved the image URL fetching via HTTP (cache images, compress etc)
 - I could have implemented better error handling, i.e. use an inteceptor, similarly to how the loader works
 
 ## Things I would have approached differently had I had more time
 
 - Implement a better API layer
 - Paging, sorting and searching via the user interface
+- Added a movie detail page (route)
 - Improved the build process and deployment pipeline 
 - Added a basic express server to render the dist files
