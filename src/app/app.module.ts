@@ -14,7 +14,8 @@ import { VideoComponent } from './components/video/video.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data-service';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
+import { LoadingInterceptor } from './services/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,13 @@ import { HttpClientModule }    from '@angular/common/http';
 	)
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [],
+  providers: [
+	{
+		provide: HTTP_INTERCEPTORS,
+		useClass: LoadingInterceptor,
+		multi: true
+	  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

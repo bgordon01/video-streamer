@@ -3,6 +3,7 @@
 		{{pageTitle}}
 	</div>
 	<div class="main">
+		<app-loader></app-loader>
 		<div *ngFor="let video of videos">
 			<app-video type={{video.programType}} url="" title={{getTitle(video.programType)}}></app-video>
 		</div>		

@@ -3,6 +3,7 @@
 		{{pageTitle}}
 	</div>
 	<div class="main">
+		<app-loader></app-loader>
 		<div *ngFor="let movie of movies">
 			<app-video type="detail" url={{getThumbnail(movie)}} title={{movie.title}}></app-video>
 		</div>	
