@@ -62,7 +62,7 @@ I decided the structure the project in a way that made sense to me, breaking it 
 - Improved the image URL fetching via HTTP (cache images, compress etc)
 - I could have implemented better error handling, i.e. use an inteceptor, similarly to how the loader works
 
-## Things I would have approached differently had I had more time
+## Things I would have approached differently
 
 - Implement a better API layer
 - Paging, sorting and searching via the user interface
